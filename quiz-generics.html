@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제네릭 퀴즈 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab" data-mode="learn">학습하기</button>
+                <button class="nav-tab active" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar" style="display: none;">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link active">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="quiz-generics" class="quiz-section active">
+                <h1>제네릭 퀴즈</h1>
+                <p>TypeScript의 제네릭 사용법에 대한 이해를 테스트해보세요.</p>
+                
+                <div class="quiz-item" data-quiz-id="generics-quiz-1">
+                    <h3>문제 1: 기본 제네릭 함수</h3>
+                    <p>배열에서 첫 번째 요소를 반환하는 제네릭 함수를 구현하세요. 빈 배열이 전달되면 undefined를 반환합니다.</p>
+                    <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성하세요">function getFirstElement<T>(arr: T[]): T | undefined {
+    if (arr.length === 0) {
+        return undefined;
+    }
+    return arr[0];
+}
+
+// 함수 테스트
+const numbers = [1, 2, 3, 4, 5];
+const strings = ["apple", "banana", "cherry"];
+const empty: number[] = [];
+
+console.log(`숫자 배열의 첫 번째 요소: ${getFirstElement(numbers)}`);
+console.log(`문자열 배열의 첫 번째 요소: ${getFirstElement(strings)}`);
+console.log(`빈 배열의 첫 번째 요소: ${getFirstElement(empty)}`);</textarea>
+                    <button class="run-button" data-code-id="generics-quiz-1">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="generics-quiz-2">
+                    <h3>문제 2: 제네릭 인터페이스와 클래스</h3>
+                    <p>키-값 쌍을 저장하는 간단한 데이터 저장소 클래스를 구현하세요. 제네릭을 사용하여 키와 값의 타입을 지정할 수 있어야 합니다.</p>
+                    <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성하세요">// 제네릭 인터페이스 정의
+interface DataStore<K, V> {
+    set(key: K, value: V): void;
+    get(key: K): V | undefined;
+    remove(key: K): boolean;
+    clear(): void;
+}
+
+// 제네릭 클래스 구현
+class SimpleDataStore<K, V> implements DataStore<K, V> {
+    private data: Map<K, V>;
+    
+    constructor() {
+        this.data = new Map<K, V>();
+    }
+    
+    set(key: K, value: V): void {
+        this.data.set(key, value);
+    }
+    
+    get(key: K): V | undefined {
+        return this.data.get(key);
+    }
+    
+    remove(key: K): boolean {
+        return this.data.delete(key);
+    }
+    
+    clear(): void {
+        this.data.clear();
+    }
+    
+    // 추가 헬퍼 메서드
+    size(): number {
+        return this.data.size;
+    }
+    
+    has(key: K): boolean {
+        return this.data.has(key);
+    }
+}
+
+// 클래스 사용 예시
+const userStore = new SimpleDataStore<number, string>();
+userStore.set(1, "Alice");
+userStore.set(2, "Bob");
+userStore.set(3, "Charlie");
+
+console.log(`ID 2의 사용자: ${userStore.get(2)}`);
+console.log(`ID 4의 사용자 존재: ${userStore.has(4)}`);
+console.log(`저장소 크기: ${userStore.size()}`);
+
+userStore.remove(1);
+console.log(`ID 1 삭제 후 저장소 크기: ${userStore.size()}`);
+
+// 다른 타입의 키-값 쌍도 사용 가능
+const configStore = new SimpleDataStore<string, any>();
+configStore.set("theme", "dark");
+configStore.set("fontSize", 16);
+configStore.set("notifications", { email: true, push: false });
+
+console.log(`테마 설정: ${configStore.get("theme")}`);
+console.log(`알림 설정:`, configStore.get("notifications"));</textarea>
+                    <button class="run-button" data-code-id="generics-quiz-2">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="generics-quiz-3">
+                    <h3>문제 3: 제네릭 제약조건</h3>
+                    <p>객체에서 특정 속성 값을 추출하는 제네릭 함수를 작성하세요. 함수는 객체와 속성 이름을 매개변수로 받고, 해당 속성의 값을 반환합니다.</p>
+                    <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성하세요">// 제네릭 제약조건을 사용한 함수
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+}
+
+// 함수 테스트에 사용할 인터페이스와 객체
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    inStock: boolean;
+}
+
+const laptop: Product = {
+    id: 1,
+    name: "노트북",
+    price: 1299.99,
+    inStock: true
+};
+
+const phone: Product = {
+    id: 2,
+    name: "스마트폰",
+    price: 899.99,
+    inStock: false
+};
+
+// 함수 사용 예시
+console.log(`노트북 이름: ${getProperty(laptop, "name")}`);
+console.log(`노트북 가격: ${getProperty(laptop, "price")}`);
+console.log(`스마트폰 재고 여부: ${getProperty(phone, "inStock")}`);
+
+// 다른 객체 타입에도 사용 가능
+interface User {
+    id: number;
+    username: string;
+    email: string;
+    isAdmin: boolean;
+}
+
+const admin: User = {
+    id: 1,
+    username: "admin",
+    email: "admin@example.com",
+    isAdmin: true
+};
+
+console.log(`관리자 이메일: ${getProperty(admin, "email")}`);
+console.log(`관리자 권한: ${getProperty(admin, "isAdmin")}`);</textarea>
+                    <button class="run-button" data-code-id="generics-quiz-3">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

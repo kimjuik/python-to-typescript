@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 개발자를 위한 TypeScript 학습</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>Python 개발자를 위한 TypeScript 가이드</h1>
+            <nav class="main-nav">
+                 <!-- Learn/Quiz Tabs -->
+                 <button class="nav-tab active" data-mode="learn">학습하기</button>
+                 <button class="nav-tab" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <aside class="sidebar">
+            <div id="learn-sidebar">
+                <h2>학습 목차</h2>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="index.html" class="sidebar-link active">소개</a></li>
+                        <li><a href="variable-declaration.html" class="sidebar-link">변수 선언 (let, const)</a></li>
+                        <li><a href="functions.html" class="sidebar-link">함수 정의</a></li>
+                        <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                        <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                        <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                        <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                        <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="quiz-sidebar" style="display: none;">
+                <h2>퀴즈</h2>
+                <nav class="quiz-nav">
+                    <ul>
+                        <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                        <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                        <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                        <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                        <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                        <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                        <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- Content sections will be loaded here by JS -->
+            <!-- Moving existing content here, wrapped in divs -->
+
+            <div id="content-intro" class="content-section active">
+                <!-- Original Introduction Content -->
+                <section id="introduction" class="section">
+                    <div class="container">
+                        <h2>소개</h2>
+                        <p>파이썬에 익숙한 개발자분들이 Node.js와 TypeScript의 세계로 쉽게 전환할 수 있도록 돕는 가이드입니다.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="content-comparison" class="content-section">
+                <!-- Original Comparison Content -->
+                <section id="comparison">
+                    <h2>Python vs Node.js & TypeScript 비교</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>특징</th>
+                                <th>Python</th>
+                                <th>Node.js</th>
+                                <th>TypeScript</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>실행 환경</td>
+                                <td>Python 인터프리터</td>
+                                <td>Node.js 런타임 (V8 엔진)</td>
+                                <td>Node.js 또는 브라우저 (JS로 컴파일)</td>
+                            </tr>
+                            <tr>
+                                <td>주요 사용 분야</td>
+                                <td>웹 개발 (Django, Flask), 데이터 과학, AI, 스크립팅</td>
+                                <td>웹 서버, API, 실시간 애플리케이션</td>
+                                <td>대규모 웹 애플리케이션, Node.js 백엔드</td>
+                            </tr>
+                            <tr>
+                                <td>타이핑</td>
+                                <td>동적 타이핑 (타입 힌트 지원)</td>
+                                <td>동적 타이핑</td>
+                                <td>정적 타이핑 (JavaScript의 슈퍼셋)</td>
+                            </tr>
+                             <tr>
+                                <td>패키지 관리</td>
+                                <td>pip / requirements.txt, (conda)</td>
+                                <td>npm 또는 yarn / package.json</td>
+                                <td>npm 또는 yarn / package.json</td>
+                            </tr>
+                             <tr>
+                                <td>비동기 처리</td>
+                                <td>async/await (asyncio)</td>
+                                <td>콜백, Promise, async/await (이벤트 루프 기반)</td>
+                                <td>Promise, async/await (JavaScript 기능 활용)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+            <div id="content-variables" class="content-section">
+                 <h2>변수 선언</h2>
+                 <p>Python과 TypeScript의 변수 선언 방법을 비교해 보세요.</p>
+
+                 <h3>변수 선언</h3>
+                 <div class="code-comparison">
+                     <div class="python-code">
+                         <h4>Python</h4>
+                         <pre><code class="language-python">
+# 동적 타이핑
+name = "Alice"
+age = 30
+
+# 타입 힌트 (선택 사항)
+name: str = "Bob"
+age: int = 25
+                        </code></pre>
+                     </div>
+                     <div class="typescript-code">
+                         <h4>TypeScript</h4>
+                         <textarea class="code-editor" id="ts-code-vars" rows="8">
+// 정적 타이핑 (타입 명시)
+let name: string = "Alice";
+let age: number = 30;
+
+// 타입 추론
+let city = "Seoul"; // TypeScript가 string으로 추론
+let count = 10;     // TypeScript가 number로 추론
+console.log(`Name: ${name}, Age: ${age}, City: ${city}, Count: ${count}`);
+                        </textarea>
+                        <button class="run-button" data-code-id="ts-code-vars">Run TypeScript</button>
+                        <div class="output" id="output-ts-code-vars"></div>
+                     </div>
+                 </div>
+
+                 <h3>함수 정의</h3>
+                 <div class="code-comparison">
+                     <div class="python-code">
+                         <h4>Python</h4>
+                         <pre><code class="language-python">
+def greet(name):
+    return f"Hello, {name}!"
+
+# 타입 힌트 사용
+def add(x: int, y: int) -> int:
+    return x + y
+                        </code></pre>
+                     </div>
+                     <div class="typescript-code">
+                         <h4>TypeScript</h4>
+                         <textarea class="code-editor" id="ts-code-functions" rows="10">
+function greet(name: string): string {
+    return `Hello, ${name}!`;
+}
+
+// 화살표 함수
+const add = (x: number, y: number): number => {
+    return x + y;
+};
+
+console.log(greet("Developer"));
+console.log(`Addition result: ${add(5, 3)}`);
+                        </textarea>
+                        <button class="run-button" data-code-id="ts-code-functions">Run TypeScript</button>
+                        <div class="output" id="output-ts-code-functions"></div>
+                     </div>
+                 </div>
+
+                 <h3>클래스 (Class)</h3>
+                 <div class="code-comparison">
+                     <div class="python-code">
+                         <h4>Python</h4>
+                         <pre><code class="language-python">
+class Greeter:
+    def __init__(self, message):
+        self.greeting = message
+
+    def greet(self):
+        return f"Hello, {self.greeting}"
+
+greeter = Greeter("world")
+print(greeter.greet())
+                        </code></pre>
+                     </div>
+                     <div class="typescript-code">
+                         <h4>TypeScript</h4>
+                         <textarea class="code-editor" id="ts-code-class" rows="12">
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet(): string {
+        return "Hello, " + this.greeting;
+    }
+}
+
+let greeter = new Greeter("world");
+console.log(greeter.greet()); // 실행 결과 확인용
+                        </textarea>
+                        <button class="run-button" data-code-id="ts-code-class">Run TypeScript</button>
+                        <div class="output" id="output-ts-code-class"></div>
+                     </div>
+                 </div>
+
+                 <h3>리스트 / 배열 (List / Array)</h3>
+                 <div class="code-comparison">
+                     <div class="python-code">
+                         <h4>Python</h4>
+                         <pre><code class="language-python">
+nums = [1, 2, 3, 4, 5]
+names = ["Alice", "Bob", "Charlie"]
+
+nums.append(6)
+print(nums)
+print(names[0])
+                        </code></pre>
+                     </div>
+                     <div class="typescript-code">
+                         <h4>TypeScript</h4>
+                         <textarea class="code-editor" id="ts-code-array" rows="8">
+let nums: number[] = [1, 2, 3, 4, 5];
+let names: string[] = ["Alice", "Bob", "Charlie"];
+
+nums.push(6);
+console.log(nums);
+console.log(names[0]);
+                        </textarea>
+                        <button class="run-button" data-code-id="ts-code-array">Run TypeScript</button>
+                        <div class="output" id="output-ts-code-array"></div>
+                     </div>
+                 </div>
+
+                 <h3>딕셔너리 / 객체 (Dictionary / Object)</h3>
+                 <div class="code-comparison">
+                     <div class="python-code">
+                         <h4>Python</h4>
+                         <pre><code class="language-python">
+person = {
+    "name": "Alice",
+    "age": 30,
+    "city": "New York"
+}
+
+person["age"] = 31
+print(person["name"])
+print(person)
+                        </code></pre>
+                     </div>
+                     <div class="typescript-code">
+                         <h4>TypeScript</h4>
+                         <textarea class="code-editor" id="ts-code-object" rows="15">
+// 인터페이스를 사용하여 객체 구조 정의 (선택 사항)
+interface Person {
+    name: string;
+    age: number;
+    city: string;
+}
+
+let person: Person = {
+    name: "Alice",
+    age: 30,
+    city: "New York"
+};
+
+person.age = 31; // 점 표기법 사용
+console.log(person.name);
+console.log(person);
+                        </textarea>
+                        <button class="run-button" data-code-id="ts-code-object">Run TypeScript</button>
+                        <div class="output" id="output-ts-code-object"></div>
+                     </div>
+                 </div>
+
+            </div>
+
+            <!-- Quiz Sections (Initially Hidden) -->
+            <div id="quiz-chapter-1" class="quiz-section">
+                 <h2>퀴즈 챕터 1: 기초 문법</h2>
+                 <p>다음 코드의 실행 결과를 예측하고, 직접 실행하여 확인해 보세요.</p>
+                 <!-- Move relevant content from original #exercises here, formatted as quiz questions -->
+                 <div class="exercise-item quiz-item">
+                     <h3>퀴즈 1-1: 타입 추론</h3>
+                     <p>아래 코드에서 변수 `result`의 타입은 무엇일까요? `console.log`를 이용해 값을 확인해보세요.</p>
+                     <div class="practice-area">
+                         <h4>나의 TypeScript 코드:</h4>
+                         <textarea class="code-editor" id="quiz-code-1-1" rows="8" spellcheck="false">let value1 = 10;
+let value2 = "20";
+let result = value1 + value2;
+
+console.log(result);
+// result의 타입은? </textarea>
+                         <button class="run-button" data-code-id="quiz-code-1-1">Run Code</button>
+                         <div class="output" id="output-quiz-code-1-1"></div>
+                     </div>
+                 </div>
+                 <!-- Add more quiz items -->
+            </div>
+
+             <div id="quiz-chapter-2" class="quiz-section">
+                  <h2>퀴즈 챕터 2: 함수와 인터페이스</h2>
+                  <p>함수 정의와 인터페이스 사용법에 대한 퀴즈입니다.</p>
+                  <!-- Add quiz items for chapter 2 -->
+                  <div class="exercise-item quiz-item">
+                      <h3>퀴즈 2-1: 인터페이스 구현</h3>
+                      <p>`name` (string)과 `greet()` (메시지 문자열 반환하는 함수)를 가지는 `Greeter` 인터페이스를 정의하고, 이 인터페이스를 만족하는 객체를 만들어 `greet()` 메소드를 호출하고 결과를 `console.log`로 출력하세요.</p>
+                      <div class="practice-area">
+                          <h4>나의 TypeScript 코드:</h4>
+                          <textarea class="code-editor" id="quiz-code-2-1" rows="12" spellcheck="false">// Greeter 인터페이스 정의
+
+
+// Greeter 객체 생성
+
+
+// greet 메소드 호출 및 출력
+</textarea>
+                          <button class="run-button" data-code-id="quiz-code-2-1">Run Code</button>
+                          <div class="output" id="output-quiz-code-2-1"></div>
+                      </div>
+                  </div>
+             </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Python to TypeScript 가이드</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@babel/preset-typescript/standalone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

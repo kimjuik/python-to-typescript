@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab active" data-mode="learn">학습하기</button>
+                <button class="nav-tab" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link active">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar" style="display: none;">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="content-classes" class="content-section active">
+                <h1>클래스 (Classes)</h1>
+                <p>Python과 TypeScript 모두 객체 지향 프로그래밍을 지원하며 클래스를 사용해 객체를 정의할 수 있습니다. 그러나 문법과 타입 시스템에서 차이가 있습니다.</p>
+                
+                <div class="section">
+                    <h2>Python vs TypeScript 비교</h2>
+                    <div class="code-comparison">
+                        <div class="code-block python-code">
+                            <h4>Python</h4>
+                            <pre><code class="language-python"># Python 클래스 정의
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def greet(self):
+        return f"안녕하세요, 제 이름은 {self.name}이고 {self.age}살입니다."
+
+# 클래스 상속
+class Employee(Person):
+    def __init__(self, name, age, employee_id):
+        super().__init__(name, age)
+        self.employee_id = employee_id
+    
+    def greet(self):
+        base_greeting = super().greet()
+        return f"{base_greeting} 직원 ID는 {self.employee_id}입니다."
+
+# 인스턴스 생성 및 메서드 호출
+john = Employee("John", 30, "E12345")
+print(john.greet())</code></pre>
+                        </div>
+                        <div class="code-block typescript-code">
+                            <h4>TypeScript</h4>
+                            <pre><code class="language-typescript">// TypeScript 클래스 정의
+class Person {
+    name: string;
+    age: number;
+    
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    greet(): string {
+        return `안녕하세요, 제 이름은 ${this.name}이고 ${this.age}살입니다.`;
+    }
+}
+
+// 클래스 상속
+class Employee extends Person {
+    employeeId: string;
+    
+    constructor(name: string, age: number, employeeId: string) {
+        super(name, age);
+        this.employeeId = employeeId;
+    }
+    
+    greet(): string {
+        const baseGreeting = super.greet();
+        return `${baseGreeting} 직원 ID는 ${this.employeeId}입니다.`;
+    }
+}
+
+// 인스턴스 생성 및 메서드 호출
+const john = new Employee("John", 30, "E12345");
+console.log(john.greet());</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>연습해보기</h2>
+                    <div class="practice-area" data-code-id="class-practice-1">
+                        <h4>클래스 작성 연습</h4>
+                        <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성해보세요">// 간단한 Bank 계좌 클래스 정의하기
+class BankAccount {
+    owner: string;
+    balance: number;
+    
+    constructor(owner: string, initialBalance: number = 0) {
+        this.owner = owner;
+        this.balance = initialBalance;
+    }
+    
+    deposit(amount: number): void {
+        if (amount <= 0) {
+            console.log("입금액은 0보다 커야 합니다.");
+            return;
+        }
+        this.balance += amount;
+        console.log(`${amount}원이 입금되었습니다. 현재 잔액: ${this.balance}원`);
+    }
+    
+    withdraw(amount: number): void {
+        if (amount <= 0) {
+            console.log("출금액은 0보다 커야 합니다.");
+            return;
+        }
+        if (amount > this.balance) {
+            console.log("잔액이 부족합니다.");
+            return;
+        }
+        this.balance -= amount;
+        console.log(`${amount}원이 출금되었습니다. 현재 잔액: ${this.balance}원`);
+    }
+}
+
+// 클래스 사용하기
+const account = new BankAccount("김철수", 10000);
+account.deposit(5000);
+account.withdraw(3000);</textarea>
+                        <button class="run-button" data-code-id="class-practice-1">실행</button>
+                        <div class="output">결과가 여기에 표시됩니다.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

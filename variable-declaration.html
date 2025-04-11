@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수 선언 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab active" data-mode="learn">학습하기</button>
+                <button class="nav-tab" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html#content-intro" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link active">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar" style="display: none;">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="content-variable-declaration" class="content-section active">
+                <h1>변수 선언 (Variable Declaration)</h1>
+                <p>Python과 TypeScript에서 변수 선언 방식의 차이를 알아보세요.</p>
+                
+                <div class="section">
+                    <h2>Python vs TypeScript 비교</h2>
+                    <div class="code-comparison">
+                        <div class="code-block python-code">
+                            <h4>Python</h4>
+                            <pre><code class="language-python"># Python에서는 타입을 명시하지 않음
+x = 10
+name = "John"
+
+# 변수 타입은 실행 중에 동적으로 결정됨
+x = "Hello"  # 문제 없음</code></pre>
+                        </div>
+                        <div class="code-block typescript-code">
+                            <h4>TypeScript</h4>
+                            <pre><code class="language-typescript">// TypeScript에서는 타입을 명시하거나 추론 가능
+let x: number = 10;
+let name: string = "John";
+
+// 타입이 고정되어 있음
+x = "Hello"; // 오류 발생!</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>연습해보기</h2>
+                    <div class="practice-area" data-code-id="var-practice-1">
+                        <h4>간단한 변수 선언 연습</h4>
+                        <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성해보세요">let age: number = 25;
+let username: string = "Alice";
+
+console.log(`이름: ${username}, 나이: ${age}`);</textarea>
+                        <button class="run-button" data-code-id="var-practice-1">실행</button>
+                        <div class="output">결과가 여기에 표시됩니다.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

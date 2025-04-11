@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클래스 퀴즈 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab" data-mode="learn">학습하기</button>
+                <button class="nav-tab active" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar" style="display: none;">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link active">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="quiz-classes" class="quiz-section active">
+                <h1>클래스 퀴즈</h1>
+                <p>TypeScript의 클래스 사용법에 대한 이해를 테스트해보세요.</p>
+                
+                <div class="quiz-item" data-quiz-id="class-quiz-1">
+                    <h3>문제 1: 기본 클래스 구현</h3>
+                    <p>다음 설명에 맞는 Vehicle 클래스를 구현하세요.</p>
+                    <ul>
+                        <li>make, model, year 속성이 있어야 합니다.</li>
+                        <li>getDetails() 메서드는 "make model (year)"을 반환합니다.</li>
+                    </ul>
+                    <textarea class="code-editor" placeholder="여기에 클래스를 작성하세요">class Vehicle {
+    make: string;
+    model: string;
+    year: number;
+    
+    constructor(make: string, model: string, year: number) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+    
+    getDetails(): string {
+        return `${this.make} ${this.model} (${this.year})`;
+    }
+}
+
+// 클래스 인스턴스 생성
+const car = new Vehicle("Toyota", "Corolla", 2021);
+console.log(car.getDetails());</textarea>
+                    <button class="run-button" data-code-id="class-quiz-1">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="class-quiz-2">
+                    <h3>문제 2: 클래스 상속</h3>
+                    <p>문제 1의 Vehicle 클래스를 확장하여 Car 클래스를 만드세요.</p>
+                    <ul>
+                        <li>doors, transmission(자동/수동) 추가 속성을 가집니다.</li>
+                        <li>getDetails() 메서드를 오버라이드하여 "make model (year) - doors doors, transmission transmission"을 반환합니다.</li>
+                    </ul>
+                    <textarea class="code-editor" placeholder="여기에 클래스를 작성하세요">class Vehicle {
+    make: string;
+    model: string;
+    year: number;
+    
+    constructor(make: string, model: string, year: number) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+    
+    getDetails(): string {
+        return `${this.make} ${this.model} (${this.year})`;
+    }
+}
+
+class Car extends Vehicle {
+    doors: number;
+    transmission: string; // "자동" 또는 "수동"
+    
+    constructor(make: string, model: string, year: number, doors: number, transmission: string) {
+        super(make, model, year);
+        this.doors = doors;
+        this.transmission = transmission;
+    }
+    
+    getDetails(): string {
+        return `${super.getDetails()} - ${this.doors}도어, ${this.transmission}`;
+    }
+}
+
+// Car 인스턴스 생성
+const car = new Car("Hyundai", "Sonata", 2022, 4, "자동");
+console.log(car.getDetails());</textarea>
+                    <button class="run-button" data-code-id="class-quiz-2">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="class-quiz-3">
+                    <h3>문제 3: 접근 제한자</h3>
+                    <p>BankAccount 클래스를 구현하세요.</p>
+                    <ul>
+                        <li>accountNumber는 private 속성이며, 생성자에서만 설정할 수 있습니다.</li>
+                        <li>owner, balance는 public 속성입니다.</li>
+                        <li>deposit(), withdraw() 메서드가 있습니다.</li>
+                        <li>getAccountInfo() 메서드는 계좌 정보를 문자열로 반환합니다.</li>
+                    </ul>
+                    <textarea class="code-editor" placeholder="여기에 클래스를 작성하세요">class BankAccount {
+    private accountNumber: string;
+    public owner: string;
+    public balance: number;
+    
+    constructor(accountNumber: string, owner: string, initialBalance: number = 0) {
+        this.accountNumber = accountNumber;
+        this.owner = owner;
+        this.balance = initialBalance;
+    }
+    
+    deposit(amount: number): void {
+        if (amount <= 0) {
+            console.log("입금액은 0보다 커야 합니다.");
+            return;
+        }
+        this.balance += amount;
+        console.log(`${amount}원이 입금되었습니다. 현재 잔액: ${this.balance}원`);
+    }
+    
+    withdraw(amount: number): boolean {
+        if (amount <= 0) {
+            console.log("출금액은 0보다 커야 합니다.");
+            return false;
+        }
+        if (amount > this.balance) {
+            console.log("잔액이 부족합니다.");
+            return false;
+        }
+        this.balance -= amount;
+        console.log(`${amount}원이 출금되었습니다. 현재 잔액: ${this.balance}원`);
+        return true;
+    }
+    
+    getAccountInfo(): string {
+        return `계좌 번호: ${this.maskAccountNumber()}, 소유자: ${this.owner}, 잔액: ${this.balance}원`;
+    }
+    
+    private maskAccountNumber(): string {
+        // 계좌번호 마스킹 (앞 4자리만 표시)
+        return this.accountNumber.substring(0, 4) + "****";
+    }
+}
+
+// 클래스 사용 예시
+const account = new BankAccount("123456789", "홍길동", 10000);
+account.deposit(5000);
+account.withdraw(2000);
+console.log(account.getAccountInfo());
+
+// private 속성 접근 시도 - 에러 발생 (주석 처리됨)
+// console.log(account.accountNumber); // 컴파일 오류 발생</textarea>
+                    <button class="run-button" data-code-id="class-quiz-3">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

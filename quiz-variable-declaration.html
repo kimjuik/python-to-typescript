@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수 선언 퀴즈 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab" data-mode="learn">학습하기</button>
+                <button class="nav-tab active" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar" style="display: none;">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html#content-intro" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link active">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="quiz-variable-declaration" class="quiz-section active">
+                <h1>변수 선언 퀴즈</h1>
+                <p>변수 선언에 대한 이해를 테스트해보세요.</p>
+                
+                <div class="quiz-item" data-quiz-id="var-quiz-1">
+                    <h3>문제 1: 변수 선언과 타입</h3>
+                    <p>다음 코드에서 오류가 발생하는 이유를 설명하고 수정해보세요.</p>
+                    <pre><code class="language-typescript">let count: number = 5;
+count = "five";</code></pre>
+                    <textarea class="code-editor" placeholder="여기에 수정된 TypeScript 코드를 작성하세요"></textarea>
+                    <button class="run-button" data-code-id="var-quiz-1">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="var-quiz-2">
+                    <h3>문제 2: 타입 추론</h3>
+                    <p>타입을 명시하지 않고 변수를 선언해보세요. 아래 코드의 출력 결과를 예측하고 작성해보세요.</p>
+                    <pre><code class="language-typescript">let message = "Hello, TypeScript!";
+console.log(message);</code></pre>
+                    <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성하세요"></textarea>
+                    <button class="run-button" data-code-id="var-quiz-2">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

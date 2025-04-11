@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async/Await 퀴즈 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab" data-mode="learn">학습하기</button>
+                <button class="nav-tab active" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar" style="display: none;">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link active">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="quiz-async-await" class="quiz-section active">
+                <h1>Async/Await 퀴즈</h1>
+                <p>TypeScript에서 비동기 프로그래밍 패턴에 대한 이해를 테스트해보세요.</p>
+                
+                <div class="quiz-item" data-quiz-id="async-quiz-1">
+                    <h3>문제 1: 기본 Promise와 Async/Await</h3>
+                    <p>다음 Promise 기반 코드를 async/await 패턴으로 변환하세요.</p>
+                    <pre><code class="language-typescript">function fetchData() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("데이터를 가져왔습니다.");
+        }, 2000);
+    });
+}
+
+function processData() {
+    fetchData()
+        .then(data => {
+            console.log("처리 중:", data);
+            return "처리된 " + data;
+        })
+        .then(result => {
+            console.log("결과:", result);
+        })
+        .catch(error => {
+            console.error("오류:", error);
+        });
+}</code></pre>
+                    <textarea class="code-editor" placeholder="여기에 async/await 패턴으로 변환한 코드를 작성하세요">function fetchData(): Promise<string> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("데이터를 가져왔습니다.");
+        }, 2000);
+    });
+}
+
+async function processData(): Promise<void> {
+    try {
+        const data = await fetchData();
+        console.log("처리 중:", data);
+        
+        const result = "처리된 " + data;
+        console.log("결과:", result);
+    } catch (error) {
+        console.error("오류:", error);
+    }
+}
+
+// 함수 실행
+processData();
+console.log("비동기 함수가 실행 중입니다...");</textarea>
+                    <button class="run-button" data-code-id="async-quiz-1">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="async-quiz-2">
+                    <h3>문제 2: 병렬 비동기 작업</h3>
+                    <p>여러 비동기 작업을 병렬로 처리하는 함수를 async/await와 Promise.all을 사용하여 구현하세요.</p>
+                    <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성하세요">// 지연된 응답을 반환하는 함수 (API 호출 시뮬레이션)
+function fetchUserData(userId: number): Promise<{id: number, name: string}> {
+    return new Promise(resolve => {
+        const delay = Math.random() * 1000 + 500; // 0.5~1.5초 사이 랜덤 지연
+        setTimeout(() => {
+            resolve({
+                id: userId,
+                name: userId === 1 ? "Alice" : userId === 2 ? "Bob" : "Charlie"
+            });
+        }, delay);
+    });
+}
+
+// 사용자의 포인트를 가져오는 함수
+function fetchUserPoints(userId: number): Promise<number> {
+    return new Promise(resolve => {
+        const delay = Math.random() * 1000 + 500; // 0.5~1.5초 사이 랜덤 지연
+        setTimeout(() => {
+            // 각 사용자의 포인트는 ID * 100 + 랜덤 값
+            resolve(userId * 100 + Math.floor(Math.random() * 100));
+        }, delay);
+    });
+}
+
+// 여러 사용자의 정보를 병렬로 가져오는 함수
+async function fetchUsersWithPoints(userIds: number[]): Promise<Array<{id: number, name: string, points: number}>> {
+    console.log("여러 사용자 정보 요청 시작...");
+    
+    // 모든 사용자의 기본 데이터를 병렬로 가져오기
+    const userDataPromises = userIds.map(id => fetchUserData(id));
+    const users = await Promise.all(userDataPromises);
+    
+    console.log("사용자 기본 데이터 로드 완료!");
+    
+    // 각 사용자의 포인트 데이터를 병렬로 가져오기
+    const userPointsPromises = userIds.map(id => fetchUserPoints(id));
+    const points = await Promise.all(userPointsPromises);
+    
+    console.log("사용자 포인트 데이터 로드 완료!");
+    
+    // 사용자 정보와 포인트 정보를 합치기
+    return users.map((user, index) => ({
+        ...user,
+        points: points[index]
+    }));
+}
+
+// 함수 실행
+const userIds = [1, 2, 3];
+fetchUsersWithPoints(userIds)
+    .then(usersWithPoints => {
+        console.log("모든 사용자 정보:", usersWithPoints);
+    })
+    .catch(error => {
+        console.error("데이터 로드 중 오류 발생:", error);
+    });</textarea>
+                    <button class="run-button" data-code-id="async-quiz-2">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="async-quiz-3">
+                    <h3>문제 3: 타입이 있는 비동기 함수</h3>
+                    <p>API 요청을 시뮬레이션하는 함수들을 타입이 포함된 비동기 함수로 구현하세요.</p>
+                    <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성하세요">// API 응답 타입 정의
+interface ApiResponse<T> {
+    success: boolean;
+    data?: T;
+    error?: string;
+}
+
+interface User {
+    id: number;
+    username: string;
+    email: string;
+}
+
+interface Post {
+    id: number;
+    userId: number;
+    title: string;
+    body: string;
+}
+
+// API 요청 함수 구현
+async function fetchUser(userId: number): Promise<ApiResponse<User>> {
+    try {
+        // API 호출 시뮬레이션
+        await new Promise(r => setTimeout(r, 1000));
+        
+        // 테스트용 사용자 데이터
+        if (userId <= 0) {
+            return {
+                success: false,
+                error: "유효하지 않은 사용자 ID입니다."
+            };
+        }
+        
+        return {
+            success: true,
+            data: {
+                id: userId,
+                username: `user${userId}`,
+                email: `user${userId}@example.com`
+            }
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error: "사용자 데이터를 가져오는 중 오류가 발생했습니다."
+        };
+    }
+}
+
+async function fetchUserPosts(userId: number): Promise<ApiResponse<Post[]>> {
+    try {
+        // API 호출 시뮬레이션
+        await new Promise(r => setTimeout(r, 1500));
+        
+        if (userId <= 0) {
+            return {
+                success: false,
+                error: "유효하지 않은 사용자 ID입니다."
+            };
+        }
+        
+        // 테스트용 게시물 데이터
+        const posts: Post[] = [
+            {
+                id: 1,
+                userId: userId,
+                title: "첫 번째 게시물",
+                body: "이것은 첫 번째 게시물의 내용입니다."
+            },
+            {
+                id: 2,
+                userId: userId,
+                title: "두 번째 게시물",
+                body: "이것은 두 번째 게시물의 내용입니다."
+            }
+        ];
+        
+        return {
+            success: true,
+            data: posts
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error: "게시물 데이터를 가져오는 중 오류가 발생했습니다."
+        };
+    }
+}
+
+// 사용자와 게시물 정보를 함께 가져오는 함수
+async function getUserWithPosts(userId: number): Promise<{user: User, posts: Post[]} | null> {
+    // 사용자 정보 가져오기
+    const userResponse = await fetchUser(userId);
+    
+    if (!userResponse.success || !userResponse.data) {
+        console.error("사용자 정보를 가져오는데 실패했습니다:", userResponse.error);
+        return null;
+    }
+    
+    // 사용자 게시물 가져오기
+    const postsResponse = await fetchUserPosts(userId);
+    
+    if (!postsResponse.success || !postsResponse.data) {
+        console.error("게시물 정보를 가져오는데 실패했습니다:", postsResponse.error);
+        return null;
+    }
+    
+    return {
+        user: userResponse.data,
+        posts: postsResponse.data
+    };
+}
+
+// 함수 사용 예시
+(async () => {
+    console.log("사용자 데이터 로딩 중...");
+    
+    const result = await getUserWithPosts(1);
+    
+    if (result) {
+        console.log("사용자 정보:", result.user);
+        console.log("게시물 정보:", result.posts);
+    } else {
+        console.log("데이터를 가져오는데 실패했습니다.");
+    }
+})();</textarea>
+                    <button class="run-button" data-code-id="async-quiz-3">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인터페이스 퀴즈 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab" data-mode="learn">학습하기</button>
+                <button class="nav-tab active" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar" style="display: none;">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link active">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="quiz-interfaces" class="quiz-section active">
+                <h1>인터페이스 퀴즈</h1>
+                <p>TypeScript의 인터페이스 사용법에 대한 이해를 테스트해보세요.</p>
+                
+                <div class="quiz-item" data-quiz-id="interface-quiz-1">
+                    <h3>문제 1: 기본 인터페이스</h3>
+                    <p>다음 객체에 맞는 인터페이스를 정의하세요.</p>
+                    <pre><code class="language-typescript">const product = {
+    id: 1,
+    name: "노트북",
+    price: 1299.99,
+    available: true,
+    specs: {
+        cpu: "i7",
+        ram: "16GB",
+        storage: "512GB SSD"
+    }
+};</code></pre>
+                    <textarea class="code-editor" placeholder="여기에 인터페이스를 작성하세요">interface ProductSpecs {
+    cpu: string;
+    ram: string;
+    storage: string;
+}
+
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    available: boolean;
+    specs: ProductSpecs;
+}
+
+// 인터페이스 사용 예시
+const product: Product = {
+    id: 1,
+    name: "노트북",
+    price: 1299.99,
+    available: true,
+    specs: {
+        cpu: "i7",
+        ram: "16GB",
+        storage: "512GB SSD"
+    }
+};
+
+console.log(product);</textarea>
+                    <button class="run-button" data-code-id="interface-quiz-1">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="interface-quiz-2">
+                    <h3>문제 2: 선택적 속성</h3>
+                    <p>User 인터페이스를 정의하세요. id와 username은 필수, email은 선택적으로 만드세요.</p>
+                    <textarea class="code-editor" placeholder="여기에 인터페이스를 작성하세요">interface User {
+    id: number;
+    username: string;
+    email?: string; // 선택적 속성
+}
+
+// 두 객체 생성 - 하나는 email 있고, 하나는 없음
+const user1: User = {
+    id: 1,
+    username: "alice123"
+};
+
+const user2: User = {
+    id: 2,
+    username: "bob456",
+    email: "bob@example.com"
+};
+
+console.log(user1);
+console.log(user2);</textarea>
+                    <button class="run-button" data-code-id="interface-quiz-2">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="interface-quiz-3">
+                    <h3>문제 3: 인터페이스 확장</h3>
+                    <p>Person 인터페이스를 정의하고, 이를 확장하여 Employee 인터페이스를 만드세요.</p>
+                    <textarea class="code-editor" placeholder="여기에 인터페이스를 작성하세요">// 기본 Person 인터페이스
+interface Person {
+    name: string;
+    age: number;
+}
+
+// Person을 확장한 Employee 인터페이스
+interface Employee extends Person {
+    jobTitle: string;
+    employeeId: string;
+    department?: string; // 선택적 속성
+}
+
+// 인터페이스 사용 예시
+const employee: Employee = {
+    name: "김철수",
+    age: 35,
+    jobTitle: "소프트웨어 개발자",
+    employeeId: "E12345",
+    department: "개발팀"
+};
+
+console.log(employee);</textarea>
+                    <button class="run-button" data-code-id="interface-quiz-3">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제네릭 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab active" data-mode="learn">학습하기</button>
+                <button class="nav-tab" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link active">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar" style="display: none;">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="content-generics" class="content-section active">
+                <h1>제네릭 (Generics)</h1>
+                <p>제네릭은 타입을 매개변수로 사용하여 재사용 가능한 컴포넌트를 만드는 방법입니다. TypeScript의 강력한 기능 중 하나로, Python의 타입 힌팅과 비슷하지만 더 강력합니다.</p>
+                
+                <div class="section">
+                    <h2>Python vs TypeScript 비교</h2>
+                    <div class="code-comparison">
+                        <div class="code-block python-code">
+                            <h4>Python</h4>
+                            <pre><code class="language-python"># Python 타입 힌팅을 사용한 제네릭
+from typing import TypeVar, Generic, List
+
+# TypeVar로 타입 변수 정의
+T = TypeVar('T')
+
+# 제네릭 함수
+def first_element(items: List[T]) -> T:
+    return items[0]
+
+# 사용 예
+result = first_element([1, 2, 3])  # int 타입
+name = first_element(["Alice", "Bob"])  # str 타입
+
+# 제네릭 클래스
+class Box(Generic[T]):
+    def __init__(self, value: T):
+        self.value = value
+    
+    def get_value(self) -> T:
+        return self.value
+
+# 사용 예
+num_box = Box(123)  # Box[int]
+str_box = Box("Hello")  # Box[str]</code></pre>
+                        </div>
+                        <div class="code-block typescript-code">
+                            <h4>TypeScript</h4>
+                            <pre><code class="language-typescript">// TypeScript 제네릭
+
+// 제네릭 함수
+function firstElement<T>(items: T[]): T {
+    return items[0];
+}
+
+// 사용 예
+const result = firstElement([1, 2, 3]);  // number 타입
+const name = firstElement(["Alice", "Bob"]);  // string 타입
+
+// 제네릭 인터페이스
+interface Box<T> {
+    value: T;
+}
+
+// 제네릭 클래스
+class GenericBox<T> implements Box<T> {
+    value: T;
+    
+    constructor(value: T) {
+        this.value = value;
+    }
+    
+    getValue(): T {
+        return this.value;
+    }
+}
+
+// 사용 예
+const numBox = new GenericBox<number>(123);
+const strBox = new GenericBox<string>("Hello");</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>연습해보기</h2>
+                    <div class="practice-area" data-code-id="generic-practice-1">
+                        <h4>제네릭 함수 작성 연습</h4>
+                        <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성해보세요">// 제네릭 함수: 배열에서 마지막 요소를 반환하는 함수
+function getLastElement<T>(arr: T[]): T | undefined {
+    if (arr.length === 0) {
+        return undefined;
+    }
+    return arr[arr.length - 1];
+}
+
+// 다양한 타입의 배열에서 테스트
+const numbers = [1, 2, 3, 4, 5];
+const lastNumber = getLastElement(numbers);
+console.log("마지막 숫자:", lastNumber);
+
+const names = ["Alice", "Bob", "Charlie"];
+const lastName = getLastElement(names);
+console.log("마지막 이름:", lastName);
+
+// 제네릭 타입 제약 조건 사용
+interface Identifiable {
+    id: number;
+}
+
+function findById<T extends Identifiable>(items: T[], id: number): T | undefined {
+    return items.find(item => item.id === id);
+}
+
+const users = [
+    { id: 1, name: "Alice" },
+    { id: 2, name: "Bob" },
+    { id: 3, name: "Charlie" }
+];
+
+const foundUser = findById(users, 2);
+console.log("찾은 사용자:", foundUser);</textarea>
+                        <button class="run-button" data-code-id="generic-practice-1">실행</button>
+                        <div class="output">결과가 여기에 표시됩니다.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

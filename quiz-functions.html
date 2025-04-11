@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 퀴즈 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab" data-mode="learn">학습하기</button>
+                <button class="nav-tab active" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar" style="display: none;">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link active">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="quiz-functions" class="quiz-section active">
+                <h1>함수 퀴즈</h1>
+                <p>TypeScript에서 함수를 선언하고 사용하는 방법에 대한 이해를 테스트해보세요.</p>
+                
+                <div class="quiz-item" data-quiz-id="func-quiz-1">
+                    <h3>문제 1: 함수 타입 지정</h3>
+                    <p>다음 함수에 적절한 매개변수 타입과 반환 타입을 추가하세요.</p>
+                    <pre><code class="language-typescript">function multiply(a, b) {
+    return a * b;
+}</code></pre>
+                    <textarea class="code-editor" placeholder="여기에 수정된 TypeScript 코드를 작성하세요">function multiply(a: number, b: number): number {
+    return a * b;
+}
+
+console.log(multiply(5, 3));</textarea>
+                    <button class="run-button" data-code-id="func-quiz-1">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="func-quiz-2">
+                    <h3>문제 2: 선택적 매개변수</h3>
+                    <p>다음 함수에 타입을 추가하고, 두 번째 매개변수를 선택적으로 만드세요. 두 번째 매개변수가 전달되지 않으면 "world"를 기본값으로 사용합니다.</p>
+                    <pre><code class="language-typescript">function greet(name, greeting) {
+    if (greeting) {
+        return `${greeting}, ${name}!`;
+    } else {
+        return `Hello, ${name}!`;
+    }
+}</code></pre>
+                    <textarea class="code-editor" placeholder="여기에 수정된 TypeScript 코드를 작성하세요">function greet(name: string, greeting?: string): string {
+    if (greeting) {
+        return `${greeting}, ${name}!`;
+    } else {
+        return `Hello, ${name}!`;
+    }
+}
+
+console.log(greet("Alice"));
+console.log(greet("Bob", "안녕하세요"));</textarea>
+                    <button class="run-button" data-code-id="func-quiz-2">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+                
+                <div class="quiz-item" data-quiz-id="func-quiz-3">
+                    <h3>문제 3: 화살표 함수</h3>
+                    <p>다음 함수를 화살표 함수로 변환하고, 적절한 타입을 추가하세요.</p>
+                    <pre><code class="language-typescript">function calculateArea(width, height) {
+    return width * height;
+}</code></pre>
+                    <textarea class="code-editor" placeholder="여기에 수정된 TypeScript 코드를 작성하세요">const calculateArea = (width: number, height: number): number => width * height;
+
+console.log(calculateArea(5, 10));</textarea>
+                    <button class="run-button" data-code-id="func-quiz-3">실행</button>
+                    <div class="output">결과가 여기에 표시됩니다.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

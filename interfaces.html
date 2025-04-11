@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인터페이스 - Python to TypeScript</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><a href="index.html">Python to TypeScript</a></h1>
+            <nav class="main-nav">
+                <button class="nav-tab active" data-mode="learn">학습하기</button>
+                <button class="nav-tab" data-mode="quiz">퀴즈 풀기</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-container container">
+        <aside class="sidebar">
+            <nav class="sidebar-nav" id="learn-sidebar">
+                <h2>학습 주제</h2>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">소개</a></li>
+                    <li><a href="variable-declaration.html" class="sidebar-link">변수 선언</a></li>
+                    <li><a href="functions.html" class="sidebar-link">함수</a></li>
+                    <li><a href="interfaces.html" class="sidebar-link active">인터페이스</a></li>
+                    <li><a href="classes.html" class="sidebar-link">클래스</a></li>
+                    <li><a href="modules.html" class="sidebar-link">모듈</a></li>
+                    <li><a href="generics.html" class="sidebar-link">제네릭</a></li>
+                    <li><a href="async-await.html" class="sidebar-link">Async/Await</a></li>
+                </ul>
+            </nav>
+            <nav class="quiz-nav" id="quiz-sidebar" style="display: none;">
+                <h2>퀴즈</h2>
+                <ul>
+                    <li><a href="quiz-variable-declaration.html" class="sidebar-link">변수 선언 퀴즈</a></li>
+                    <li><a href="quiz-functions.html" class="sidebar-link">함수 퀴즈</a></li>
+                    <li><a href="quiz-interfaces.html" class="sidebar-link">인터페이스 퀴즈</a></li>
+                    <li><a href="quiz-classes.html" class="sidebar-link">클래스 퀴즈</a></li>
+                    <li><a href="quiz-modules.html" class="sidebar-link">모듈 퀴즈</a></li>
+                    <li><a href="quiz-generics.html" class="sidebar-link">제네릭 퀴즈</a></li>
+                    <li><a href="quiz-async-await.html" class="sidebar-link">Async/Await 퀴즈</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="content-interfaces" class="content-section active">
+                <h1>인터페이스 (Interfaces)</h1>
+                <p>TypeScript의 인터페이스는 객체의 형태를 정의하는 강력한 방법입니다. Python에는 직접적인 대응 개념이 없지만, 타입 힌팅과 비슷한 목적으로 사용할 수 있습니다.</p>
+                
+                <div class="section">
+                    <h2>Python vs TypeScript 비교</h2>
+                    <div class="code-comparison">
+                        <div class="code-block python-code">
+                            <h4>Python</h4>
+                            <pre><code class="language-python"># Python에서는 타입 힌팅을 사용하여 비슷한 효과를 낼 수 있음
+from typing import TypedDict, Protocol
+
+# TypedDict를 사용한 방법
+class User(TypedDict):
+    name: str
+    age: int
+    email: str
+
+# 객체 생성 (타입 검사는 IDE나 mypy 같은 도구로 수행)
+user: User = {
+    "name": "John",
+    "age": 30,
+    "email": "john@example.com"
+}
+
+# Protocol을 사용한 방법
+class Printable(Protocol):
+    def print_info(self) -> None: ...
+
+class Report:
+    def print_info(self) -> None:
+        print("Report printed")
+
+# Report 클래스는 Printable 프로토콜을 "구현"함</code></pre>
+                        </div>
+                        <div class="code-block typescript-code">
+                            <h4>TypeScript</h4>
+                            <pre><code class="language-typescript">// TypeScript 인터페이스 정의
+interface User {
+    name: string;
+    age: number;
+    email: string;
+}
+
+// 인터페이스에 맞는 객체 생성
+const user: User = {
+    name: "John",
+    age: 30,
+    email: "john@example.com"
+};
+
+// 인터페이스로 메서드 시그니처 정의
+interface Printable {
+    printInfo(): void;
+}
+
+// 인터페이스 구현
+class Report implements Printable {
+    printInfo(): void {
+        console.log("Report printed");
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2>연습해보기</h2>
+                    <div class="practice-area" data-code-id="interface-practice-1">
+                        <h4>인터페이스 작성 연습</h4>
+                        <textarea class="code-editor" placeholder="여기에 TypeScript 코드를 작성해보세요">// Product 인터페이스 정의하기
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    inStock: boolean;
+}
+
+// 인터페이스에 맞는 객체 생성
+const laptop: Product = {
+    id: 1,
+    name: "노트북",
+    price: 1299.99,
+    inStock: true
+};
+
+console.log(laptop);</textarea>
+                        <button class="run-button" data-code-id="interface-practice-1">실행</button>
+                        <div class="output">결과가 여기에 표시됩니다.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Python to TypeScript Learning Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
