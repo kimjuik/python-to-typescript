@@ -40,6 +40,31 @@ document.addEventListener('DOMContentLoaded', () => {
             if (codeElement && outputElement) {
                 const code = codeElement.value;
                 try {
+                    // 출력 결과를 저장할 변수
+                    let capturedOutput = '';
+                    
+                    // 기존 console.log 함수 저장
+                    const originalConsoleLog = console.log;
+                    
+                    // console.log 함수 재정의
+                    console.log = function() {
+                        // 원래 콘솔에도 출력
+                        originalConsoleLog.apply(console, arguments);
+                        
+                        // 출력 결과를 문자열로 저장
+                        const args = Array.from(arguments).map(arg => {
+                            if (typeof arg === 'object' && arg !== null) {
+                                try {
+                                    return JSON.stringify(arg, null, 2);
+                                } catch (e) {
+                                    return String(arg);
+                                }
+                            }
+                            return String(arg);
+                        });
+                        capturedOutput += args.join(' ') + '\n';
+                    };
+                    
                     // Transpile TypeScript to JavaScript
                     const jsCode = Babel.transform(code, {
                         presets: ['typescript'],
@@ -48,7 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Execute the JavaScript code
                     const result = eval(jsCode);
-                    outputElement.textContent = result !== undefined ? String(result) : 'No output';
+                    
+                    // console.log 함수 복원
+                    console.log = originalConsoleLog;
+                    
+                    // 출력 결과 표시
+                    if (capturedOutput) {
+                        outputElement.textContent = capturedOutput;
+                    } else if (result !== undefined) {
+                        outputElement.textContent = String(result);
+                    } else {
+                        outputElement.textContent = 'No output';
+                    }
                     outputElement.style.color = '#333';
                 } catch (error) {
                     outputElement.textContent = `Error: ${error.message}`;
